@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Muhammad Jiyas M — Aspiring Data Engineer &amp; AI Practitioner</title>
+  <meta name="description" content="Portfolio of Muhammad Jiyas M: Aspiring Data Engineer &amp; AI Practitioner based in Kerala, India. Specializing in Python, SQL, machine learning, and generative AI."/>
+
+  <!-- Google Fonts: Inter & Material Symbols Outlined -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400..600,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "surface-bright": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#434655",
+            "inverse-surface": "#283044",
+            "inverse-on-surface": "#eef0ff",
+            "outline": "#737686",
+            "outline-variant": "#c3c6d7",
+            "surface-tint": "#0053db",
+            "primary": "#004ac6",
+            "on-primary": "#ffffff",
+            "primary-container": "#2563eb",
+            "on-primary-container": "#eeefff",
+            "inverse-primary": "#b4c5ff",
+            "secondary": "#1d4ed8",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#4069f2",
+            "on-secondary-container": "#fffbff",
+            "tertiary": "#005a82",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#0074a6",
+            "on-tertiary-container": "#e4f2ff",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "primary-fixed": "#dbe1ff",
+            "primary-fixed-dim": "#b4c5ff",
+            "on-primary-fixed": "#00174b",
+            "secondary-fixed": "#dce1ff",
+            "tertiary-fixed": "#c9e6ff",
+            "background": "#faf8ff",
+            "on-background": "#131b2e"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            code: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"]
+          },
+          letterSpacing: {
+            tighter: "-0.025em",
+            tight: "-0.015em",
+            wide: "0.01em",
+            widest: "0.05em"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #faf8ff;
+        color: #131b2e;
+        font-family: 'Inter', sans-serif;
+      }
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .modal-backdrop {
+      background-color: rgba(19, 27, 46, 0.45);
+      backdrop-filter: blur(4px);
+    }
+    /* Toast Notification Animation */
+    @keyframes toastFade {
+      0% { opacity: 0; transform: translateY(10px); }
+      15% { opacity: 1; transform: translateY(0); }
+      85% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+    .animate-toast {
+      animation: toastFade 3s ease-in-out forwards;
+    }
+    /* Print Optimization for PDF export */
+    @media print {
+      header, #owner-banner, #owner-workspace-section, #project-filters, footer, button, .no-print {
+        display: none !important;
+      }
+      main {
+        padding-top: 0 !important;
+        max-width: 100% !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .shadow-sm, .shadow-md, .shadow-xl {
+        box-shadow: none !important;
+      }
+      details[open] summary ~ * {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface font-sans text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col">
+
+  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <!-- ========================================================================= -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
+
+  <!-- ========================================================================= -->
+  <!-- HEADER & NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="fixed top-0 w-full z-40 bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo / Name -->
+      <a class="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 px-1.5" href="#overview" aria-label="Go to Overview">
+        <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold text-base tracking-tight shadow-sm group-hover:bg-primary group-hover:text-on-primary transition-colors">
+          MJ
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-bold text-on-surface leading-tight tracking-tight group-hover:text-primary transition-colors">Muhammad Jiyas M</span>
+          <span class="text-xs text-on-surface-variant font-medium">Aspiring Data Engineer &amp; AI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium text-on-surface-variant" aria-label="Main Navigation">
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#overview">Overview</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#about">About</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#education">Education</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#skills">Tech Stack</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#projects">Projects</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#certifications">Certifications</a>
+        <a class="px-3 py-1.5 rounded-lg hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#contact">Contact</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        
+        <!-- Editable Availability Status Indicator (Controlled via Owner Mode) -->
+        <div id="availability-badge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-surface-container text-xs font-semibold text-tertiary">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="availability-badge-text">AVAILABLE FOR ROLES</span>
+        </div>
+
+        <!-- Owner Mode Toggle (discreet key button) -->
+        <button id="toggle-owner-mode-btn" 
+                onclick="toggleOwnerMode()" 
+                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors text-xs font-semibold border border-surface-container"
+                title="Toggle Owner Edit Workspace" 
+                aria-label="Toggle Owner Edit Workspace">
+          <span class="material-symbols-outlined text-[17px]">lock_open</span>
+          <span id="owner-toggle-label" class="hidden md:inline">Owner Mode</span>
+        </button>
+
+        <!-- Conditional Resume Download Button (Enabled only if resume.pdf is included in workspace) -->
+        <a id="header-resume-btn" 
+           href="resume.pdf" 
+           download="Muhammad_Jiyas_M_Resume.pdf" 
+           class="hidden inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-xs sm:text-sm font-semibold hover:bg-surface-container-highest transition-colors border border-surface-container gap-1.5 shadow-sm"
+           title="Download Resume PDF">
+          <span class="material-symbols-outlined text-[17px]">download</span>
+          <span>Resume</span>
+        </a>
+
+        <!-- Direct Contact Button (Default primary action when resume PDF is not present) -->
+        <a id="header-contact-btn" 
+           class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg bg-primary text-on-primary text-xs sm:text-sm font-semibold hover:bg-secondary transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+           href="#contact">
+          Contact Me
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" 
+                onclick="toggleMobileMenu()" 
+                class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" 
+                aria-label="Toggle Navigation Menu" 
+                aria-expanded="false">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-surface-container bg-surface/95 backdrop-blur-xl px-4 py-3 space-y-1">
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#overview" onclick="toggleMobileMenu()">Overview</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#about" onclick="toggleMobileMenu()">About</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#education" onclick="toggleMobileMenu()">Education</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#skills" onclick="toggleMobileMenu()">Tech Stack</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#projects" onclick="toggleMobileMenu()">Projects</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#certifications" onclick="toggleMobileMenu()">Certifications</a>
+      <a class="block px-3 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container-high" href="#contact" onclick="toggleMobileMenu()">Contact</a>
+      <div class="pt-2 border-t border-surface-container flex items-center justify-between">
+        <span class="text-xs text-on-surface-variant font-medium">Owner Controls:</span>
+        <button onclick="toggleOwnerMode(); toggleMobileMenu();" class="text-xs text-primary font-semibold hover:underline">
+          Switch Owner Edit Mode
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- OWNER MODE ALERT BANNER (Shown only when Owner Mode is enabled) -->
+  <!-- ========================================================================= -->
+  <aside id="owner-banner" class="hidden fixed top-16 left-0 right-0 z-30 bg-primary text-on-primary px-4 py-2 text-xs sm:text-sm shadow-md transition-all">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+        <span>
+          <strong class="font-semibold">Owner Mode Active:</strong> Add, edit, or delete projects &amp; certificates. 
+          <em>Changes are saved to your browser's Local Storage (<code class="bg-primary-container px-1 py-0.5 rounded text-xs font-mono">localStorage</code>) and remain in this browser only. They are not published automatically.</em>
+        </span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="#owner-controls-anchor" class="bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded text-xs font-medium transition-colors">
+          Open Controls
+        </a>
+        <button onclick="toggleOwnerMode()" class="bg-white text-primary hover:bg-white/90 px-2.5 py-1 rounded text-xs font-bold transition-colors">
+          Exit Owner Mode
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTAINER -->
+  <!-- ========================================================================= -->
+  <main class="w-full pt-20 md:pt-24 flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col w-full gap-16 md:gap-24">
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 1: HERO / OVERVIEW -->
+      <!-- ===================================================================== -->
+      <section id="overview" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-4 md:pt-8 items-center scroll-mt-24">
+        
+        <!-- Left: Intro & Details -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-surface-container-high text-primary text-xs font-semibold uppercase tracking-wider border border-surface-container">
+            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            PORTFOLIO // PRECISION DATA &amp; AI
+          </div>
+
+          <div class="space-y-2">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-on-surface tracking-tighter leading-tight">
+              Muhammad Jiyas M
+            </h1>
+            <p class="text-xl sm:text-2xl text-primary font-semibold tracking-tight">
+              Aspiring Data Engineer &amp; AI Practitioner
+            </p>
+          </div>
+
+          <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            I build practical data-driven applications using Python, SQL, machine learning, and generative AI. Grounded in systematic data pipelines, reproducible modeling, and robust end-to-end architectures.
+          </p>
+
+          <!-- Core Call to Actions -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a class="px-5 py-2.5 rounded-lg bg-primary text-on-primary text-sm font-semibold hover:bg-secondary transition-all shadow-[0_4px_14px_rgba(0,74,198,0.22)] flex items-center gap-2" href="#projects">
+              <span>View Projects</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+            </a>
+            <a class="px-5 py-2.5 rounded-lg bg-surface-container-high text-on-surface text-sm font-semibold hover:bg-surface-container-highest transition-all border border-surface-container flex items-center gap-2" href="#contact">
+              <span>Contact Me</span>
+              <span class="material-symbols-outlined text-[18px]">mail</span>
+            </a>
+            <!-- Conditional Hero Resume Button -->
+            <a id="hero-resume-btn" 
+               href="resume.pdf" 
+               download="Muhammad_Jiyas_M_Resume.pdf" 
+               class="hidden px-4 py-2.5 rounded-lg bg-surface text-on-surface-variant hover:text-on-surface text-sm font-medium border border-surface-container hover:border-outline-variant transition-colors flex items-center gap-1.5"
+               title="Download Resume PDF">
+              <span class="material-symbols-outlined text-[18px]">download</span>
+              <span>Download Resume</span>
+            </a>
+            <a class="px-4 py-2.5 rounded-lg bg-surface text-on-surface-variant hover:text-on-surface text-sm font-medium border border-surface-container hover:border-outline-variant transition-colors flex items-center gap-1.5" href="https://github.com/jiayasjasu-del" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[18px]">code</span>
+              <span>GitHub</span>
+            </a>
+            <a class="px-4 py-2.5 rounded-lg bg-surface text-on-surface-variant hover:text-on-surface text-sm font-medium border border-surface-container hover:border-outline-variant transition-colors flex items-center gap-1.5" href="https://www.linkedin.com/in/muhammad-jiyas-m-b932ba38a/" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[18px]">share</span>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-surface-container-high">
+            <div class="flex flex-col">
+              <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Location</span>
+              <span class="text-base sm:text-lg text-on-surface font-bold">Kerala, India</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Education</span>
+              <span class="text-base sm:text-lg text-primary font-bold">Joy University (NIAT)</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Credentials</span>
+              <span class="text-base sm:text-lg text-on-surface font-bold">6 Certifications</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Architecture Telemetry Card -->
+        <div class="lg:col-span-5 bg-surface-container-low p-6 sm:p-8 rounded-xl shadow-[0_4px_20px_rgba(19,27,46,0.04)] border border-surface-container relative overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold">
+                <span class="material-symbols-outlined text-[20px]">hub</span>
+              </div>
+              <div>
+                <h2 class="text-base font-bold text-on-surface">Data &amp; AI Architecture Flow</h2>
+                <p class="text-xs text-on-surface-variant">Core Engineering Focus</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+              Active
+            </span>
+          </div>
+
+          <!-- Architecture Nodes matching Muhammad's exact stack -->
+          <div class="flex flex-col gap-3">
+            <!-- Node 01 -->
+            <div class="bg-surface p-3.5 rounded-lg border-l-4 border-primary shadow-sm flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs font-bold text-primary">01</span>
+                <div>
+                  <h3 class="text-sm font-semibold text-on-surface">Ingestion &amp; Warehousing</h3>
+                  <p class="text-xs text-on-surface-variant">SQL &amp; Google BigQuery</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-primary text-[20px]">database</span>
+            </div>
+
+            <!-- Node 02 -->
+            <div class="bg-surface p-3.5 rounded-lg border-l-4 border-secondary shadow-sm flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs font-bold text-secondary">02</span>
+                <div>
+                  <h3 class="text-sm font-semibold text-on-surface">Data Engineering &amp; ETL</h3>
+                  <p class="text-xs text-on-surface-variant">Python, Pandas, NumPy &amp; Apache Spark</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-secondary text-[20px]">reorder</span>
+            </div>
+
+            <!-- Node 03 -->
+            <div class="bg-surface p-3.5 rounded-lg border-l-4 border-tertiary shadow-sm flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs font-bold text-tertiary">03</span>
+                <div>
+                  <h3 class="text-sm font-semibold text-on-surface">Machine Learning &amp; Deep Learning</h3>
+                  <p class="text-xs text-on-surface-variant">Random Forest, XGBoost, LSTM &amp; Autoencoders</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-tertiary text-[20px]">psychology</span>
+            </div>
+
+            <!-- Node 04 -->
+            <div class="bg-surface p-3.5 rounded-lg border-l-4 border-primary-container shadow-sm flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs font-bold text-primary-container">04</span>
+                <div>
+                  <h3 class="text-sm font-semibold text-on-surface">Generative AI &amp; Interactive Delivery</h3>
+                  <p class="text-xs text-on-surface-variant">LLM Prompting, Streamlit &amp; REST APIs</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-primary-container text-[20px]">monitoring</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 2: ABOUT -->
+      <!-- ===================================================================== -->
+      <section id="about" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">About Me</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+              Practical Engineering With Disciplined Data Science
+            </h2>
+            <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container space-y-3">
+              <p class="text-sm sm:text-base text-on-surface leading-relaxed font-medium">
+                I am pursuing a B.Tech in Computer Science and Engineering (AI &amp; ML) through the NIAT program at Joy University. I have completed an Advanced Diploma in Data Engineering, Generative AI &amp; Big Data. I build practical data-driven applications using Python, SQL, machine learning, and generative AI.
+              </p>
+            </div>
+            
+            <div class="p-4 rounded-lg bg-surface border border-surface-container-high flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-[24px]">location_on</span>
+                <div>
+                  <span class="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Location</span>
+                  <span class="text-sm font-bold text-on-surface">Kerala, India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillars / Engineering Highlights based on verified abilities -->
+          <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            
+            <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-2">
+              <div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined">dataset</span>
+              </div>
+              <h3 class="text-base font-bold text-on-surface">Data Engineering &amp; Pipelines</h3>
+              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                Building reliable ETL pipelines, transforming complex tabular structures using Python, Pandas, and SQL, and managing big data workflows with Apache Spark and BigQuery.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-2">
+              <div class="w-10 h-10 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined">precision_manufacturing</span>
+              </div>
+              <h3 class="text-base font-bold text-on-surface">Machine Learning &amp; Analytics</h3>
+              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                Implementing predictive models, classification algorithms, regression, Random Forest, and XGBoost to solve concrete anomaly detection and forecasting challenges.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-2">
+              <div class="w-10 h-10 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined">psychology_alt</span>
+              </div>
+              <h3 class="text-base font-bold text-on-surface">Generative AI &amp; NLP</h3>
+              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                Applying prompt engineering, TF-IDF text scoring, sentiment analysis, and LLM orchestration (such as Google Gemini workflows) to automate content and email intelligence.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-2">
+              <div class="w-10 h-10 rounded-lg bg-surface-container-highest text-on-surface flex items-center justify-center">
+                <span class="material-symbols-outlined">dashboard_customize</span>
+              </div>
+              <h3 class="text-base font-bold text-on-surface">Full-Stack Tools &amp; Delivery</h3>
+              <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                Designing interactive user interfaces with Streamlit, Power BI, Tableau, and modern web frameworks (React, Vite, FastAPI), backed by rigorous testing and version control.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 3: EDUCATION -->
+      <!-- ===================================================================== -->
+      <section id="education" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="flex flex-col gap-2 mb-8">
+          <span class="text-xs font-bold text-primary uppercase tracking-widest">Academic Background</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">Formal Education</h2>
+          <p class="text-sm text-on-surface-variant max-w-2xl">
+            Degree and specialized diploma credentials in computer science, data engineering, and artificial intelligence.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Education Card 1: B.Tech -->
+          <div class="bg-surface-container-low p-6 rounded-xl border border-surface-container shadow-sm flex flex-col justify-between gap-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined">school</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+                In Progress
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-on-surface">B.Tech in Computer Science and Engineering (AI &amp; ML)</h3>
+              <p class="text-sm text-primary font-semibold mt-1">Joy University — NIAT Program</p>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Specialized undergraduate degree track focused on Artificial Intelligence, Machine Learning algorithms, mathematical foundations, and software engineering principles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Education Card 2: Advanced Diploma -->
+          <div class="bg-surface-container-low p-6 rounded-xl border border-surface-container shadow-sm flex flex-col justify-between gap-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined">workspace_premium</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold">
+                2025–2026
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-on-surface">Advanced Diploma in Data Engineering, Generative AI &amp; Big Data</h3>
+              <p class="text-sm text-primary font-semibold mt-1">Certification Program — Kerala, India</p>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Comprehensive intensive program covering distributed big data workflows, Apache Spark, modern ETL pipeline architectures, and practical generative AI integration.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 4: SKILLS & TECH STACK MATRIX -->
+      <!-- ===================================================================== -->
+      <section id="skills" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="flex flex-col gap-2 mb-8">
+          <span class="text-xs font-bold text-primary uppercase tracking-widest">Capabilities Matrix</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">Skills &amp; Technical Proficiencies</h2>
+          <p class="text-sm text-on-surface-variant max-w-2xl">
+            Strictly categorized skill set reflecting hands-on work in data engineering, machine learning, and application development.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Category 1: Programming and Data -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+                <h3 class="text-sm font-bold text-on-surface">Programming &amp; Data</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Core</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Python</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">SQL</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Pandas</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">NumPy</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Machine Learning -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">model_training</span>
+                <h3 class="text-sm font-bold text-on-surface">Machine Learning</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Algorithms</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Regression</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Classification</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Random Forest</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">XGBoost</span>
+            </div>
+          </div>
+
+          <!-- Category 3: AI and NLP -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">smart_toy</span>
+                <h3 class="text-sm font-bold text-on-surface">AI &amp; NLP</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">GenAI</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Generative AI</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">TF-IDF</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Sentiment Analysis</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Prompt Engineering</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Deep Learning -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">neurology</span>
+                <h3 class="text-sm font-bold text-on-surface">Deep Learning</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Neural</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Autoencoders</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">LSTM</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Computer Vision</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Data Engineering -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">engineering</span>
+                <h3 class="text-sm font-bold text-on-surface">Data Engineering</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Big Data</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">ETL Pipelines</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Apache Spark</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">BigQuery</span>
+            </div>
+          </div>
+
+          <!-- Category 6: Tools & Deployment -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
+                <h3 class="text-sm font-bold text-on-surface">Tools &amp; Deployment</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Infra</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Streamlit</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Power BI</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Tableau</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Git</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">GitHub</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Jupyter Notebook</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">REST APIs</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Docker (basic)</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Streamlit Cloud</span>
+            </div>
+          </div>
+
+          <!-- Category 7: OmniSight Specialized Stack -->
+          <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container shadow-sm flex flex-col gap-3 hover:border-primary transition-colors md:col-span-2 lg:col-span-3">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container-high">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]">visibility</span>
+                <h3 class="text-sm font-bold text-on-surface">OmniSight Development Tools</h3>
+              </div>
+              <span class="text-xs text-on-surface-variant font-mono">Auditing &amp; Web Automation</span>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">React</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Vite</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">JavaScript</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">CSS</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Python</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">FastAPI</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Playwright</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Pytest</span>
+              <span class="px-2.5 py-1 rounded bg-surface border border-surface-container-high text-xs font-medium text-on-surface">Oxlint</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 5: FEATURED PROJECTS -->
+      <!-- ===================================================================== -->
+      <section id="projects" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+          <div>
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">Selected Works</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">Projects &amp; Architectures</h2>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Note: These projects are in active development and have not been published or pushed to public repositories.
+            </p>
+          </div>
+
+          <!-- Owner Add Project Button (Shown only when Owner Mode is enabled) -->
+          <div id="owner-add-project-wrapper" class="hidden">
+            <button onclick="openProjectModal()" class="px-4 py-2 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-secondary transition-colors flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              <span>+ Add Project</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Category Filter Pills -->
+        <div id="project-filters" class="flex flex-wrap items-center gap-2 mb-6" role="tablist" aria-label="Project Categories">
+          <button onclick="filterProjects('all')" id="filter-btn-all" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary text-on-primary transition-colors shadow-sm" role="tab" aria-selected="true">
+            All Projects (7)
+          </button>
+          <button onclick="filterProjects('in-progress')" id="filter-btn-in-progress" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors border border-surface-container" role="tab" aria-selected="false">
+            In Progress (2)
+          </button>
+          <button onclick="filterProjects('automation')" id="filter-btn-automation" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors border border-surface-container" role="tab" aria-selected="false">
+            Workflows &amp; GenAI (2)
+          </button>
+          <button onclick="filterProjects('analytics')" id="filter-btn-analytics" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors border border-surface-container" role="tab" aria-selected="false">
+            Analytics &amp; ML (3)
+          </button>
+        </div>
+
+        <!-- Dynamic Projects Container (Rendered via JavaScript from state / localStorage) -->
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Filled dynamically -->
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 6: LICENSES & CERTIFICATIONS -->
+      <!-- ===================================================================== -->
+      <section id="certifications" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">Credentials</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">Licenses &amp; Certifications</h2>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Completed technical programs and official certifications. Showing title, issuer, and issue date.
+            </p>
+          </div>
+
+          <!-- Owner Add Certificate Button (Shown only when Owner Mode is enabled) -->
+          <div id="owner-add-cert-wrapper" class="hidden">
+            <button onclick="openCertModal()" class="px-4 py-2 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-secondary transition-colors flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              <span>+ Add Certificate</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Certifications Grid (Rendered via JavaScript from state / localStorage) -->
+        <div id="certifications-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Filled dynamically -->
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 7: OWNER WORKSPACE CONTROLS (Hidden from normal visitors) -->
+      <!-- ===================================================================== -->
+      <section id="owner-workspace-section" class="hidden py-8 border-t-2 border-primary/30 scroll-mt-24">
+        <div id="owner-controls-anchor" class="flex flex-col gap-2 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[24px]">tune</span>
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">Owner Administration Workspace</span>
+          </div>
+          <h2 class="text-2xl font-bold text-on-surface tracking-tight">Client-Side Portfolio Management Sandbox</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+            This private administration area allows the portfolio owner to manage live cards, update availability status, and test content variations. All edits, creations, and removals are safely stored in your local browser storage (<code class="bg-surface-container px-1 py-0.5 rounded text-xs">localStorage</code>). 
+            <strong class="text-on-surface">They remain strictly inside this browser and are not automatically deployed or synced to GitHub.</strong>
+          </p>
+        </div>
+
+        <div class="bg-surface-container-low p-6 rounded-xl border border-surface-container shadow-sm space-y-6">
+          
+          <!-- System Status Bar (Resume, Links, Integrations) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-4 border-b border-surface-container">
+            <div class="bg-surface p-3.5 rounded-lg border border-surface-container">
+              <span class="text-[11px] font-semibold text-on-surface-variant block uppercase tracking-wider">Resume PDF File</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span id="resume-file-indicator" class="w-2 h-2 rounded-full bg-amber-500"></span>
+                <span id="resume-file-status" class="text-xs font-bold text-on-surface">Resume PDF included</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-1">Download the supplied resume PDF.</p>
+            </div>
+
+            <div class="bg-surface p-3.5 rounded-lg border border-surface-container">
+              <span class="text-[11px] font-semibold text-on-surface-variant block uppercase tracking-wider">News Digest Automation</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span class="text-xs font-bold text-on-surface">Trigger set at 8:00</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-1">Instance timezone &amp; recurrence cadence remain unverified.</p>
+            </div>
+
+            <div class="bg-surface p-3.5 rounded-lg border border-surface-container">
+              <span class="text-[11px] font-semibold text-on-surface-variant block uppercase tracking-wider">Contact Dispatch</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="text-xs font-bold text-on-surface">Client Mailto Link</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-1">Addresses prefilled draft directly to jiayasjasu@gmail.com.</p>
+            </div>
+          </div>
+
+          <!-- Availability Manager Control -->
+          <div class="bg-surface p-4 rounded-lg border border-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-sm font-bold text-on-surface">"Available for Roles" Header Badge</h3>
+              <p class="text-xs text-on-surface-variant">Toggle whether the status indicator appears in the navigation bar, or change its text.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="flex items-center gap-2">
+                <label class="text-xs text-on-surface font-semibold" for="availability-input">Label Text:</label>
+                <input id="availability-input" type="text" class="h-9 px-3 text-xs rounded border border-outline-variant bg-surface text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-44" placeholder="AVAILABLE FOR ROLES"/>
+              </div>
+              <button onclick="toggleAvailabilityVisibility()" id="availability-toggle-btn" class="px-3 py-1.5 rounded text-xs font-semibold bg-primary text-on-primary transition-colors">
+                Toggle Visibility
+              </button>
+              <button onclick="saveAvailabilityText()" class="px-3 py-1.5 rounded text-xs font-semibold bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors">
+                Save Text
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-surface-container">
+            <button onclick="openProjectModal()" class="px-4 py-2 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-secondary transition-colors flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              <span>+ Add New Project</span>
+            </button>
+            <button onclick="openCertModal()" class="px-4 py-2 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-secondary transition-colors flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              <span>+ Add New Certificate</span>
+            </button>
+            <button onclick="resetPortfolioData()" class="px-4 py-2 rounded-lg bg-surface-container-high text-error hover:bg-error-container hover:text-on-error-container transition-colors text-xs font-semibold flex items-center gap-1.5 border border-surface-container">
+              <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+              <span>Reset to Original Portfolio Content</span>
+            </button>
+            <button onclick="toggleOwnerMode()" class="px-4 py-2 rounded-lg bg-surface text-on-surface-variant hover:text-on-surface transition-colors text-xs font-medium border border-surface-container ml-auto">
+              Close Owner Workspace
+            </button>
+          </div>
+
+          <!-- Notification feedback -->
+          <div id="owner-feedback" class="hidden p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-medium">
+            <!-- Feedback message dynamically injected -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- SECTION 8: CONTACT -->
+      <!-- ===================================================================== -->
+      <section id="contact" class="py-8 border-t border-surface-container-high scroll-mt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          
+          <!-- Left: Contact Details -->
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-widest">Get In Touch</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight mt-1">Direct Communication</h2>
+            </div>
+
+            <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              Open for Data Engineering roles, machine learning initiatives, and technical discussions. Connect with me directly through phone, email, or professional networks.
+            </p>
+
+            <div class="flex flex-col gap-4 mt-2">
+              
+              <!-- Phone with quick copy -->
+              <div class="flex items-center justify-between gap-4 p-3 rounded-lg bg-surface-container-low border border-surface-container">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">call</span>
+                  </div>
+                  <div>
+                    <span class="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Phone</span>
+                    <a class="text-sm sm:text-base font-bold text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline" href="tel:+919846476572">
+                      +91 98464 76572
+                    </a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('+919846476572', 'Phone number copied to clipboard!')" class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Copy phone number" aria-label="Copy phone number">
+                  <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                </button>
+              </div>
+
+              <!-- Email with quick copy -->
+              <div class="flex items-center justify-between gap-4 p-3 rounded-lg bg-surface-container-low border border-surface-container">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">mail</span>
+                  </div>
+                  <div>
+                    <span class="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Email</span>
+                    <a class="text-sm sm:text-base font-bold text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline" href="mailto:jiayasjasu@gmail.com">
+                      jiayasjasu@gmail.com
+                    </a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('jiayasjasu@gmail.com', 'Email address copied to clipboard!')" class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Copy email address" aria-label="Copy email address">
+                  <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                </button>
+              </div>
+
+              <!-- Location -->
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low border border-surface-container">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined">location_on</span>
+                </div>
+                <div>
+                  <span class="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Location</span>
+                  <span class="text-sm sm:text-base font-bold text-on-surface">Kerala, India</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Social Links -->
+            <div class="pt-2">
+              <span class="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold mb-2">Profiles</span>
+              <div class="flex items-center gap-3">
+                <a class="px-4 py-2 rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-2 text-xs font-semibold border border-surface-container" 
+                   href="https://www.linkedin.com/in/muhammad-jiyas-m-b932ba38a/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Visit Muhammad Jiyas M LinkedIn Profile">
+                  <span class="material-symbols-outlined text-[18px]">share</span>
+                  <span>LinkedIn Profile</span>
+                </a>
+                <a class="px-4 py-2 rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-2 text-xs font-semibold border border-surface-container" 
+                   href="https://github.com/jiayasjasu-del" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Visit Muhammad Jiyas M GitHub Profile">
+                  <span class="material-symbols-outlined text-[18px]">code</span>
+                  <span>GitHub Profile</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Direct Email Dispatch Form -->
+          <div class="lg:col-span-7 bg-surface-container-low p-6 sm:p-8 rounded-xl border border-surface-container shadow-sm">
+            <div class="mb-4">
+              <h3 class="text-lg font-bold text-on-surface">Send a Message</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                Direct client-side dispatch: Submitting opens a prefilled message in your default email client addressed to <strong class="text-on-surface font-semibold">jiayasjasu@gmail.com</strong>.
+              </p>
+            </div>
+
+            <form class="flex flex-col gap-4" onsubmit="handleContactSubmit(event)">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1">
+                  <label class="text-xs font-semibold text-on-surface" for="sender-name">Your Name</label>
+                  <input id="sender-name" class="h-10 px-3 rounded border border-outline-variant bg-surface text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Jane Doe" required type="text"/>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <label class="text-xs font-semibold text-on-surface" for="sender-email">Your Email Address</label>
+                  <input id="sender-email" class="h-10 px-3 rounded border border-outline-variant bg-surface text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. jane@company.com" required type="email"/>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label class="text-xs font-semibold text-on-surface" for="sender-subject">Subject</label>
+                <input id="sender-subject" class="h-10 px-3 rounded border border-outline-variant bg-surface text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Data Engineering Opportunity / Collaboration" required type="text"/>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label class="text-xs font-semibold text-on-surface" for="sender-message">Message</label>
+                <textarea id="sender-message" class="p-3 rounded border border-outline-variant bg-surface text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Type your message here..." required rows="4"></textarea>
+              </div>
+
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+                <button class="px-6 py-2.5 bg-primary text-on-primary text-xs sm:text-sm font-semibold rounded hover:bg-secondary transition-colors self-start shadow-sm flex items-center gap-2" type="submit">
+                  <span>Open Prefilled Email Draft</span>
+                  <span class="material-symbols-outlined text-[16px]">outgoing_mail</span>
+                </button>
+                <span class="text-[11px] text-on-surface-variant">Client-side mailto dispatch.</span>
+              </div>
+
+              <!-- Form Feedback Box -->
+              <div id="contact-status-box" class="hidden p-3 rounded-lg bg-surface border border-surface-container text-xs text-on-surface">
+                <!-- Dynamically populated -->
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="w-full bg-surface-container-low mt-20 py-8 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary text-xs font-bold">
+          MJ
+        </div>
+        <span class="text-xs text-on-surface-variant">
+          &copy; <span id="current-year">2026</span> Muhammad Jiyas M. Precision Engineering Portfolio.
+        </span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs font-medium text-on-surface-variant">
+        <a class="hover:text-primary transition-colors" href="#overview">Overview</a>
+        <a class="hover:text-primary transition-colors" href="#about">About</a>
+        <a class="hover:text-primary transition-colors" href="#education">Education</a>
+        <a class="hover:text-primary transition-colors" href="#skills">Tech Stack</a>
+        <a class="hover:text-primary transition-colors" href="#projects">Projects</a>
+        <a class="hover:text-primary transition-colors" href="#certifications">Certifications</a>
+        <a class="hover:text-primary transition-colors" href="#contact">Contact</a>
+        <button onclick="toggleOwnerMode()" class="text-xs text-primary font-semibold hover:underline">
+          Owner Mode
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADD / EDIT PROJECT (Owner Mode) -->
+  <!-- ========================================================================= -->
+  <div id="project-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+    <div class="bg-surface-container-lowest rounded-xl border border-surface-container shadow-xl max-w-xl w-full p-6 space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-surface-container-high pb-3">
+        <h3 id="project-modal-title" class="text-base font-bold text-on-surface">Add Project</h3>
+        <button onclick="closeProjectModal()" class="text-on-surface-variant hover:text-on-surface p-1 rounded" aria-label="Close project modal">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <form id="project-form" onsubmit="saveProject(event)" class="space-y-3">
+        <input type="hidden" id="project-edit-id" value=""/>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-proj-title">Project Title *</label>
+          <input id="modal-proj-title" required class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. OmniSight"/>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-on-surface" for="modal-proj-status">Status</label>
+            <select id="modal-proj-status" class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none">
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-on-surface" for="modal-proj-category">Category / Domain</label>
+            <input id="modal-proj-category" class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. Web Automation &amp; Auditing"/>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-proj-desc">Description *</label>
+          <textarea id="modal-proj-desc" required rows="3" class="p-2.5 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="Project overview, problem solved, architecture..."></textarea>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-proj-tools">Tools &amp; Technologies (comma-separated)</label>
+          <input id="modal-proj-tools" class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. React, Vite, Python, FastAPI, Playwright"/>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-proj-details">Architecture / Implementation Notes (Optional)</label>
+          <textarea id="modal-proj-details" rows="2" class="p-2.5 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. Directory structure, rule-based detection, optional OpenAI API..."></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-surface-container-high">
+          <button type="button" onclick="closeProjectModal()" class="px-4 py-2 rounded text-xs font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="px-4 py-2 rounded text-xs font-semibold bg-primary text-on-primary hover:bg-secondary transition-colors">
+            Save Project
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADD / EDIT CERTIFICATE (Owner Mode) -->
+  <!-- ========================================================================= -->
+  <div id="cert-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <div class="bg-surface-container-lowest rounded-xl border border-surface-container shadow-xl max-w-md w-full p-6 space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-surface-container-high pb-3">
+        <h3 id="cert-modal-title" class="text-base font-bold text-on-surface">Add Certificate</h3>
+        <button onclick="closeCertModal()" class="text-on-surface-variant hover:text-on-surface p-1 rounded" aria-label="Close certificate modal">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <form id="cert-form" onsubmit="saveCertificate(event)" class="space-y-3">
+        <input type="hidden" id="cert-edit-id" value=""/>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-cert-title">Certificate Name *</label>
+          <input id="modal-cert-title" required class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. Python for Data Analysis"/>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-cert-org">Issuing Organization *</label>
+          <input id="modal-cert-org" required class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. Blitz Academy"/>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-on-surface" for="modal-cert-issued">Issued Date</label>
+          <input id="modal-cert-issued" class="h-9 px-3 rounded border border-outline-variant bg-surface text-on-surface text-xs focus:ring-1 focus:ring-primary focus:outline-none" placeholder="e.g. Issued Sep 2026"/>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-surface-container-high">
+          <button type="button" onclick="closeCertModal()" class="px-4 py-2 rounded text-xs font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="px-4 py-2 rounded text-xs font-semibold bg-primary text-on-primary hover:bg-secondary transition-colors">
+            Save Certificate
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: CLIENT-SIDE LOGIC & STATE PERSISTENCE -->
+  <!-- ========================================================================= -->
+  <script>
+    /**
+     * VERIFIED BASELINE DATA FROM USER PROMPT & DECISIONS
+     * Strictly includes only confirmed facts without hallucinated links or metrics.
+     */
+    const INITIAL_PROJECTS = [
+      {
+        id: "omnisight",
+        title: "OmniSight",
+        status: "In Progress",
+        category: "Web Automation & Auditing",
+        githubUrl: "https://github.com/jiayasjasu-del/omnisight-ai",
+        description: "A tool for auditing websites through browser automation. It captures responsive screenshots, detects issues using rules, compares pages against visual baselines, and includes a repair workflow. AI analysis through the OpenAI API is optional and requires an API key.",
+        tools: [
+          "React", "Vite", "JavaScript", "CSS", "Python", "FastAPI",
+          "Playwright", "Pytest", "Oxlint", "Git", "GitHub"
+        ],
+        details: "Architecture & Components:\n• Frontend: React dashboard and sample pages\n• Backend: Python & FastAPI service handling browser automation, rule audits, and repair workflows\n• Automation: Playwright for cross-device responsive screenshot captures\n• UI Checks: Rule-based issue detection and visual baseline comparisons\n• AI Analysis: Optional OpenAI API integration (requires API key)\n• Testing & Quality: Pytest suite, Oxlint linter, and Vite production builds\n• Project Structure: backend/, frontend/, tests/, artifacts/, README.md, DEMO.md"
+      },
+      {
+        id: "news-digest",
+        title: "AI & Technology News Digest Automation",
+        status: "Completed",
+        category: "Workflow Automation & LLM",
+        description: "An n8n workflow that reads news from an RSS feed, leverages Google Gemini to summarize and organize AI and technology stories, and writes the structured output to Google Sheets. The workflow configuration shows a scheduled trigger at 8:00 (instance timezone and recurrence cadence unverified).",
+        tools: ["n8n", "RSS Feed", "Google Gemini", "Google Sheets"],
+        details: "Workflow Configuration:\n• Trigger: RSS feed reader ingestion (scheduled trigger configured at 8:00; n8n instance timezone and schedule cadence to be confirmed upon deployment)\n• Intelligence: Google Gemini model summarizes stories and categorizes topics\n• Storage: Automated row appending to Google Sheets\n• Status: Operational workflow without unverified schedule assumptions"
+      },
+      {
+        id: "internship-email",
+        title: "Internship Application Email Automation",
+        status: "Completed",
+        category: "Workflow Automation & LLM",
+        description: "An n8n workflow that detects a new row in Google Sheets, uses Google Gemini to draft a personalized internship application email based on applicant details, role, skills, and experience, and sends the drafted email directly to my own email address for personal review.",
+        tools: ["n8n", "Google Sheets", "Google Gemini", "Email Dispatch"],
+        details: "Important Note: Designed for personal review. The workflow dispatches the generated draft directly to Muhammad's private inbox for manual verification, not automatically to external employers."
+      },
+      {
+        id: "failsight-ai",
+        title: "FailSight AI — Advanced Edition",
+        status: "Completed",
+        category: "Predictive Analytics & Deep Learning",
+        githubUrl: "https://github.com/jiayasjasu-del/FailSight_AI",
+        description: "Product failure and warranty analytics system utilizing anomaly detection, LSTM forecasting, and sentiment analysis to identify equipment failure risks.",
+        tools: ["Python", "Streamlit", "Deep Learning", "Anomaly Detection", "LSTM", "Sentiment Analysis"],
+        details: "Technical Architecture:\n• Modeling: Anomaly detection algorithms and LSTM sequential forecasting\n• Sentiment Analysis: NLP analysis on customer and warranty logs\n• Interface: Interactive Streamlit analytics dashboard\n• Deployment: Deployed live as indicated on resume (no external demo URL added without verification)"
+      },
+      {
+        id: "resume-screener",
+        title: "Resume Screener",
+        status: "Completed",
+        category: "NLP & Information Extraction",
+        githubUrl: "https://github.com/jiayasjasu-del/resume-screener",
+        description: "An automated candidate evaluation tool that ranks resumes against job descriptions using TF-IDF vectorization and natural language processing matching techniques.",
+        tools: ["Python", "Streamlit", "scikit-learn", "TF-IDF", "NLP Matching"],
+        details: "Core Pipeline:\n• Ingestion: Parses candidate resume text\n• Vectorization: Extracts key terms and computes TF-IDF representations\n• Scoring: Measures similarity against job description criteria\n• Interface: Streamlit web dashboard"
+      },
+      {
+        id: "expense-analyzer",
+        title: "Expense Analyzer",
+        status: "Completed",
+        category: "Financial Data Analytics",
+        githubUrl: "https://github.com/jiayasjasu-del/spendlens-ai",
+        description: "An interactive dashboard that categorizes uploaded CSV transaction data and generates actionable budgeting insights with statistical visualizations.",
+        tools: ["Python", "Pandas", "Matplotlib", "Streamlit", "CSV Analytics"],
+        details: "Core Features:\n• Parsing: Ingests raw tabular banking/credit transaction CSVs\n• Transformation: Cleans records and classifies expense categories using Pandas\n• Visualization: Generates expenditure breakdowns with Matplotlib and Streamlit"
+      },
+      {
+        id: "ai-detection-chatbot",
+        title: "AI Detection System with Chatbot",
+        status: "In Progress",
+        category: "Computer Vision & Generative AI",
+        description: "A dual-capability detection system combining computer vision, deep learning, and generative AI to detect patterns and support conversational interactions.",
+        tools: ["Computer Vision", "Deep Learning", "Generative AI", "Python"],
+        details: "Status: Currently in active progress."
+      }
+    ];
+
+    const INITIAL_CERTIFICATES = [
+      {
+        id: "cert-blitz-analysis",
+        title: "Python for Data Analysis",
+        issuer: "Blitz Academy",
+        issued: "Issued Sep 2026"
+      },
+      {
+        id: "cert-blitz-science",
+        title: "Python for Data Science",
+        issuer: "Blitz Academy",
+        issued: "Issued Aug 2026"
+      },
+      {
+        id: "cert-ibm-ml",
+        title: "Machine Learning with Python - Level 1",
+        issuer: "IBM",
+        issued: "Issued Jan 2026"
+      },
+      {
+        id: "cert-cognitive-ml",
+        title: "Machine Learning with Python",
+        issuer: "Cognitive Class",
+        issued: "Issued Feb 2026"
+      },
+      {
+        id: "cert-forage-ba",
+        title: "British Airways - Data Science Job Simulation",
+        issuer: "Forage",
+        issued: "Issued Jan 2026"
+      },
+      {
+        id: "cert-cognitive-101",
+        title: "Python 101 for Data Science",
+        issuer: "Cognitive Class",
+        issued: "Issued Nov 2025"
+      }
+    ];
+
+    // Local Storage Keys
+    const STORAGE_KEY_PROJECTS = "mj_portfolio_projects_v3";
+    const STORAGE_KEY_CERTS = "mj_portfolio_certs_v3";
+    const STORAGE_KEY_AVAILABILITY = "mj_portfolio_availability_v3";
+    const STORAGE_KEY_OWNER_MODE = "mj_portfolio_owner_mode_v3";
+
+    // Application State
+    let isOwnerMode = false;
+    let projectsState = [];
+    let certsState = [];
+    let currentProjectFilter = 'all';
+    let availabilityState = {
+      visible: false,
+      text: "AVAILABLE FOR ROLES"
+    };
+
+    /**
+     * Initialize Portfolio Data & State
+     */
+    function initPortfolio() {
+      // Load Owner Mode preference or check query param (?owner=true)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("owner") === "true") {
+        isOwnerMode = true;
+      } else {
+        const storedOwner = localStorage.getItem(STORAGE_KEY_OWNER_MODE);
+        isOwnerMode = storedOwner === "true";
+      }
+
+      // Load Projects
+      const storedProjects = localStorage.getItem(STORAGE_KEY_PROJECTS);
+      if (storedProjects) {
+        try {
+          projectsState = JSON.parse(storedProjects);
+        } catch (e) {
+          projectsState = [...INITIAL_PROJECTS];
+        }
+      } else {
+        projectsState = [...INITIAL_PROJECTS];
+      }
+
+      // Load Certificates
+      const storedCerts = localStorage.getItem(STORAGE_KEY_CERTS);
+      if (storedCerts) {
+        try {
+          certsState = JSON.parse(storedCerts);
+        } catch (e) {
+          certsState = [...INITIAL_CERTIFICATES];
+        }
+      } else {
+        certsState = [...INITIAL_CERTIFICATES];
+      }
+
+      // Load Availability
+      const storedAvailability = localStorage.getItem(STORAGE_KEY_AVAILABILITY);
+      if (storedAvailability) {
+        try {
+          availabilityState = JSON.parse(storedAvailability);
+        } catch (e) {
+          availabilityState = { visible: false, text: "AVAILABLE FOR ROLES" };
+        }
+      }
+
+      renderAvailability();
+      renderProjects();
+      renderCertificates();
+      updateOwnerModeUI();
+      checkResumeFilePresence();
+    }
+
+    /**
+     * Resume Presence Check:
+     * The supplied resume.pdf is bundled beside index.html.
+     */
+    function checkResumeFilePresence() {
+      const headerResumeBtn = document.getElementById("header-resume-btn");
+      const heroResumeBtn = document.getElementById("hero-resume-btn");
+      const statusIndicator = document.getElementById("resume-file-indicator");
+      const statusText = document.getElementById("resume-file-status");
+
+      // The resume is bundled beside index.html. Keep the links available
+      // when opened directly, since browsers may block fetch() for file://.
+      if (headerResumeBtn) headerResumeBtn.classList.remove("hidden");
+      if (heroResumeBtn) heroResumeBtn.classList.remove("hidden");
+      if (statusIndicator) statusIndicator.className = "w-2 h-2 rounded-full bg-emerald-500";
+      if (statusText) statusText.textContent = "Resume PDF included";
+    }
+
+    /**
+     * Toggle Owner Mode
+     */
+    function toggleOwnerMode() {
+      isOwnerMode = !isOwnerMode;
+      localStorage.setItem(STORAGE_KEY_OWNER_MODE, isOwnerMode);
+      updateOwnerModeUI();
+      renderProjects();
+      renderCertificates();
+
+      if (isOwnerMode) {
+        showFeedback("Owner Edit Mode enabled. Management controls and edit handles are now visible.");
+        showToast("Owner Mode Activated");
+      } else {
+        showToast("Owner Mode Deactivated");
+      }
+    }
+
+    /**
+     * Update UI Visibility based on Owner Mode
+     */
+    function updateOwnerModeUI() {
+      const banner = document.getElementById("owner-banner");
+      const workspaceSection = document.getElementById("owner-workspace-section");
+      const addProjWrapper = document.getElementById("owner-add-project-wrapper");
+      const addCertWrapper = document.getElementById("owner-add-cert-wrapper");
+      const toggleBtn = document.getElementById("toggle-owner-mode-btn");
+      const toggleLabel = document.getElementById("owner-toggle-label");
+
+      if (isOwnerMode) {
+        banner.classList.remove("hidden");
+        workspaceSection.classList.remove("hidden");
+        addProjWrapper.classList.remove("hidden");
+        addCertWrapper.classList.remove("hidden");
+        toggleBtn.classList.add("bg-primary", "text-on-primary");
+        toggleBtn.classList.remove("bg-surface-container-low", "text-on-surface-variant");
+        toggleLabel.textContent = "Owner Active";
+      } else {
+        banner.classList.add("hidden");
+        workspaceSection.classList.add("hidden");
+        addProjWrapper.classList.add("hidden");
+        addCertWrapper.classList.add("hidden");
+        toggleBtn.classList.remove("bg-primary", "text-on-primary");
+        toggleBtn.classList.add("bg-surface-container-low", "text-on-surface-variant");
+        toggleLabel.textContent = "Owner Mode";
+      }
+    }
+
+    /**
+     * Availability Badge Logic
+     */
+    function renderAvailability() {
+      const badge = document.getElementById("availability-badge");
+      const badgeText = document.getElementById("availability-badge-text");
+      const input = document.getElementById("availability-input");
+      const toggleBtn = document.getElementById("availability-toggle-btn");
+
+      badgeText.textContent = availabilityState.text || "AVAILABLE FOR ROLES";
+      input.value = availabilityState.text || "AVAILABLE FOR ROLES";
+
+      if (availabilityState.visible) {
+        badge.classList.remove("hidden");
+        badge.classList.add("sm:inline-flex");
+        toggleBtn.textContent = "Hide Badge";
+        toggleBtn.classList.replace("bg-surface-container-high", "bg-primary");
+        toggleBtn.classList.replace("text-on-surface", "text-on-primary");
+      } else {
+        badge.classList.add("hidden");
+        badge.classList.remove("sm:inline-flex");
+        toggleBtn.textContent = "Show Badge";
+        toggleBtn.classList.replace("bg-primary", "bg-surface-container-high");
+        toggleBtn.classList.replace("text-on-primary", "text-on-surface");
+      }
+    }
+
+    function toggleAvailabilityVisibility() {
+      availabilityState.visible = !availabilityState.visible;
+      localStorage.setItem(STORAGE_KEY_AVAILABILITY, JSON.stringify(availabilityState));
+      renderAvailability();
+      showFeedback(`Availability badge is now ${availabilityState.visible ? 'visible' : 'hidden'}.`);
+    }
+
+    function saveAvailabilityText() {
+      const input = document.getElementById("availability-input");
+      const val = input.value.trim();
+      if (val) {
+        availabilityState.text = val;
+        localStorage.setItem(STORAGE_KEY_AVAILABILITY, JSON.stringify(availabilityState));
+        renderAvailability();
+        showFeedback("Availability text updated successfully!");
+        showToast("Availability status saved");
+      }
+    }
+
+    /**
+     * Category Filtering for Projects
+     */
+    function filterProjects(filterCategory) {
+      currentProjectFilter = filterCategory;
+
+      const filterButtons = [
+        { id: 'filter-btn-all', cat: 'all' },
+        { id: 'filter-btn-in-progress', cat: 'in-progress' },
+        { id: 'filter-btn-automation', cat: 'automation' },
+        { id: 'filter-btn-analytics', cat: 'analytics' }
+      ];
+
+      filterButtons.forEach(b => {
+        const btn = document.getElementById(b.id);
+        if (!btn) return;
+        if (b.cat === filterCategory) {
+          btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary text-on-primary transition-colors shadow-sm';
+          btn.setAttribute('aria-selected', 'true');
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors border border-surface-container';
+          btn.setAttribute('aria-selected', 'false');
+        }
+      });
+
+      renderProjects();
+    }
+
+    /**
+     * Render Projects with active category filter
+     */
+    function renderProjects() {
+      const container = document.getElementById("projects-container");
+      container.innerHTML = "";
+
+      const filtered = projectsState.filter(proj => {
+        if (currentProjectFilter === 'all') return true;
+        if (currentProjectFilter === 'in-progress') return proj.status === 'In Progress';
+        if (currentProjectFilter === 'automation') {
+          const cat = (proj.category || '').toLowerCase();
+          return cat.includes('workflow') || cat.includes('llm') || cat.includes('automation');
+        }
+        if (currentProjectFilter === 'analytics') {
+          const cat = (proj.category || '').toLowerCase();
+          return cat.includes('analytics') || cat.includes('deep learning') || cat.includes('nlp') || cat.includes('financial');
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-2 p-8 text-center bg-surface-container-low rounded-xl border border-surface-container">
+            <p class="text-sm text-on-surface-variant">No projects match this category filter.</p>
+            <button onclick="filterProjects('all')" class="mt-2 text-xs font-semibold text-primary hover:underline">
+              Show all projects
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((proj, idx) => {
+        const isInProgress = proj.status === "In Progress";
+        const card = document.createElement("article");
+        card.className = "bg-surface-container-low rounded-xl border border-surface-container shadow-sm p-6 flex flex-col justify-between hover:border-primary/50 transition-all";
+        card.setAttribute("aria-labelledby", `project-title-${idx}`);
+
+        // Status badge
+        const badgeMarkup = isInProgress 
+          ? `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold flex items-center gap-1">
+               <span class="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+               In Progress
+             </span>`
+          : `<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold">
+               Completed
+             </span>`;
+
+        // Tools tags
+        const toolsMarkup = Array.isArray(proj.tools) 
+          ? proj.tools.map(t => `<span class="px-2 py-0.5 rounded bg-surface text-on-surface-variant text-xs font-medium border border-surface-container-high">${escapeHTML(t)}</span>`).join(" ")
+          : "";
+
+        // Owner edit controls
+        const ownerActions = isOwnerMode ? `
+          <div class="flex items-center gap-2 pt-3 mt-3 border-t border-surface-container">
+            <span class="text-[11px] text-on-surface-variant font-mono">Owner Control:</span>
+            <button onclick="editProject('${proj.id}')" class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-xs font-semibold hover:bg-surface-container-high text-primary flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">edit</span> Edit
+            </button>
+            <button onclick="deleteProject('${proj.id}')" class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-xs font-semibold hover:bg-error-container text-error flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">delete</span> Delete
+            </button>
+          </div>
+        ` : "";
+
+        // Expandable Architecture Notes
+        const hasDetails = proj.details && proj.details.trim().length > 0;
+        const detailsMarkup = hasDetails ? `
+          <details class="mt-3 pt-3 border-t border-surface-container text-xs text-on-surface-variant group">
+            <summary class="cursor-pointer font-semibold text-primary hover:text-secondary flex items-center justify-between list-none">
+              <span>View Architecture &amp; Implementation Details</span>
+              <span class="material-symbols-outlined text-[18px] group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <div class="mt-2.5 p-3 rounded bg-surface border border-surface-container font-mono text-[11px] leading-relaxed whitespace-pre-line text-on-surface">
+              ${escapeHTML(proj.details)}
+            </div>
+          </details>
+        ` : "";
+
+        const repoLinkMarkup = proj.githubUrl ? `
+          <div class="mt-3">
+            <a href="${escapeHTML(proj.githubUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-primary text-xs font-semibold border border-surface-container hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-[16px]">code</span>
+              <span>View GitHub repository</span>
+            </a>
+          </div>
+        ` : "";
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <span class="text-xs text-primary font-bold uppercase tracking-wider">${escapeHTML(proj.category || 'Data & AI')}</span>
+              ${badgeMarkup}
+            </div>
+
+            <h3 id="project-title-${idx}" class="text-lg sm:text-xl font-bold text-on-surface mb-2">
+              ${escapeHTML(proj.title)}
+            </h3>
+
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4">
+              ${escapeHTML(proj.description)}
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              ${toolsMarkup}
+            </div>
+
+            ${detailsMarkup}
+            ${repoLinkMarkup}
+          </div>
+
+          ${ownerActions}
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    /**
+     * Render Certifications
+     */
+    function renderCertificates() {
+      const container = document.getElementById("certifications-container");
+      container.innerHTML = "";
+
+      if (certsState.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-3 p-8 text-center bg-surface-container-low rounded-xl border border-surface-container">
+            <p class="text-sm text-on-surface-variant">No certificates listed.</p>
+          </div>
+        `;
+        return;
+      }
+
+      certsState.forEach((cert, idx) => {
+        const card = document.createElement("div");
+        card.className = "bg-surface-container-low p-6 rounded-xl border border-surface-container shadow-sm flex flex-col justify-between gap-4 hover:border-primary/50 transition-all";
+
+        const ownerActions = isOwnerMode ? `
+          <div class="flex items-center gap-2 pt-3 border-t border-surface-container">
+            <button onclick="editCertificate('${cert.id}')" class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-xs font-semibold hover:bg-surface-container-high text-primary flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">edit</span> Edit
+            </button>
+            <button onclick="deleteCertificate('${cert.id}')" class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-xs font-semibold hover:bg-error-container text-error flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">delete</span> Delete
+            </button>
+          </div>
+        ` : "";
+
+        card.innerHTML = `
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start justify-between gap-2">
+              <div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined">workspace_premium</span>
+              </div>
+              ${cert.issued ? `<span class="text-xs text-on-surface-variant font-medium">${escapeHTML(cert.issued)}</span>` : ''}
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-on-surface leading-snug">
+                ${escapeHTML(cert.title)}
+              </h3>
+              <p class="text-xs sm:text-sm text-primary font-semibold mt-1">
+                ${escapeHTML(cert.issuer)}
+              </p>
+            </div>
+          </div>
+
+          ${ownerActions}
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    /**
+     * Project Modal & CRUD Actions
+     */
+    function openProjectModal(editId = null) {
+      const modal = document.getElementById("project-modal");
+      const titleElem = document.getElementById("project-modal-title");
+      const form = document.getElementById("project-form");
+      form.reset();
+
+      if (editId) {
+        const proj = projectsState.find(p => p.id === editId);
+        if (proj) {
+          titleElem.textContent = "Edit Project";
+          document.getElementById("project-edit-id").value = proj.id;
+          document.getElementById("modal-proj-title").value = proj.title;
+          document.getElementById("modal-proj-status").value = proj.status || "Completed";
+          document.getElementById("modal-proj-category").value = proj.category || "";
+          document.getElementById("modal-proj-desc").value = proj.description || "";
+          document.getElementById("modal-proj-tools").value = Array.isArray(proj.tools) ? proj.tools.join(", ") : (proj.tools || "");
+          document.getElementById("modal-proj-details").value = proj.details || "";
+        }
+      } else {
+        titleElem.textContent = "Add Project";
+        document.getElementById("project-edit-id").value = "";
+      }
+
+      modal.classList.remove("hidden");
+      document.getElementById("modal-proj-title").focus();
+    }
+
+    function closeProjectModal() {
+      document.getElementById("project-modal").classList.add("hidden");
+    }
+
+    function saveProject(event) {
+      event.preventDefault();
+      const editId = document.getElementById("project-edit-id").value;
+      const title = document.getElementById("modal-proj-title").value.trim();
+      const status = document.getElementById("modal-proj-status").value;
+      const category = document.getElementById("modal-proj-category").value.trim() || "Data & AI";
+      const desc = document.getElementById("modal-proj-desc").value.trim();
+      const toolsStr = document.getElementById("modal-proj-tools").value.trim();
+      const details = document.getElementById("modal-proj-details").value.trim();
+
+      const toolsArray = toolsStr ? toolsStr.split(",").map(t => t.trim()).filter(Boolean) : [];
+
+      if (editId) {
+        const index = projectsState.findIndex(p => p.id === editId);
+        if (index !== -1) {
+          projectsState[index] = {
+            ...projectsState[index],
+            title,
+            status,
+            category,
+            description: desc,
+            tools: toolsArray,
+            details
+          };
+          showFeedback(`Project "${title}" updated.`);
+          showToast(`Updated "${title}"`);
+        }
+      } else {
+        const newProj = {
+          id: "proj-" + Date.now(),
+          title,
+          status,
+          category,
+          description: desc,
+          tools: toolsArray,
+          details
+        };
+        projectsState.unshift(newProj);
+        showFeedback(`New project "${title}" added.`);
+        showToast(`Added "${title}"`);
+      }
+
+      localStorage.setItem(STORAGE_KEY_PROJECTS, JSON.stringify(projectsState));
+      closeProjectModal();
+      renderProjects();
+    }
+
+    function editProject(id) {
+      openProjectModal(id);
+    }
+
+    function deleteProject(id) {
+      const proj = projectsState.find(p => p.id === id);
+      const title = proj ? proj.title : "this project";
+      if (confirm(`Are you sure you want to delete "${title}" from your local browser portfolio?`)) {
+        projectsState = projectsState.filter(p => p.id !== id);
+        localStorage.setItem(STORAGE_KEY_PROJECTS, JSON.stringify(projectsState));
+        renderProjects();
+        showFeedback(`Project "${title}" removed.`);
+        showToast(`Deleted "${title}"`);
+      }
+    }
+
+    /**
+     * Certificate Modal & CRUD Actions
+     */
+    function openCertModal(editId = null) {
+      const modal = document.getElementById("cert-modal");
+      const titleElem = document.getElementById("cert-modal-title");
+      const form = document.getElementById("cert-form");
+      form.reset();
+
+      if (editId) {
+        const cert = certsState.find(c => c.id === editId);
+        if (cert) {
+          titleElem.textContent = "Edit Certificate";
+          document.getElementById("cert-edit-id").value = cert.id;
+          document.getElementById("modal-cert-title").value = cert.title;
+          document.getElementById("modal-cert-org").value = cert.issuer;
+          document.getElementById("modal-cert-issued").value = cert.issued || "";
+        }
+      } else {
+        titleElem.textContent = "Add Certificate";
+        document.getElementById("cert-edit-id").value = "";
+      }
+
+      modal.classList.remove("hidden");
+      document.getElementById("modal-cert-title").focus();
+    }
+
+    function closeCertModal() {
+      document.getElementById("cert-modal").classList.add("hidden");
+    }
+
+    function saveCertificate(event) {
+      event.preventDefault();
+      const editId = document.getElementById("cert-edit-id").value;
+      const title = document.getElementById("modal-cert-title").value.trim();
+      const issuer = document.getElementById("modal-cert-org").value.trim();
+      const issued = document.getElementById("modal-cert-issued").value.trim();
+
+      if (editId) {
+        const index = certsState.findIndex(c => c.id === editId);
+        if (index !== -1) {
+          certsState[index] = {
+            ...certsState[index],
+            title,
+            issuer,
+            issued
+          };
+          showFeedback(`Certificate "${title}" updated.`);
+          showToast(`Updated "${title}"`);
+        }
+      } else {
+        const newCert = {
+          id: "cert-" + Date.now(),
+          title,
+          issuer,
+          issued
+        };
+        certsState.push(newCert);
+        showFeedback(`New certificate "${title}" added.`);
+        showToast(`Added "${title}"`);
+      }
+
+      localStorage.setItem(STORAGE_KEY_CERTS, JSON.stringify(certsState));
+      closeCertModal();
+      renderCertificates();
+    }
+
+    function editCertificate(id) {
+      openCertModal(id);
+    }
+
+    function deleteCertificate(id) {
+      const cert = certsState.find(c => c.id === id);
+      const title = cert ? cert.title : "this certificate";
+      if (confirm(`Are you sure you want to delete "${title}" from your local browser portfolio?`)) {
+        certsState = certsState.filter(c => c.id !== id);
+        localStorage.setItem(STORAGE_KEY_CERTS, JSON.stringify(certsState));
+        renderCertificates();
+        showFeedback(`Certificate "${title}" removed.`);
+        showToast(`Deleted "${title}"`);
+      }
+    }
+
+    /**
+     * Reset to the original portfolio content
+     */
+    function resetPortfolioData() {
+      if (confirm("Reset all projects, certificates, and settings to the original portfolio content? This clears your custom local edits.")) {
+        projectsState = [...INITIAL_PROJECTS];
+        certsState = [...INITIAL_CERTIFICATES];
+        availabilityState = { visible: false, text: "AVAILABLE FOR ROLES" };
+        currentProjectFilter = 'all';
+        
+        localStorage.removeItem(STORAGE_KEY_PROJECTS);
+        localStorage.removeItem(STORAGE_KEY_CERTS);
+        localStorage.removeItem(STORAGE_KEY_AVAILABILITY);
+
+        filterProjects('all');
+        renderAvailability();
+        renderCertificates();
+        showFeedback("Portfolio reset to the original content.");
+        showToast("Portfolio reset");
+      }
+    }
+
+    /**
+     * Contact Form Submission Handler (Direct Prefilled Mailto Dispatch)
+     */
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("sender-name").value.trim();
+      const email = document.getElementById("sender-email").value.trim();
+      const subject = document.getElementById("sender-subject").value.trim();
+      const message = document.getElementById("sender-message").value.trim();
+      const feedbackBox = document.getElementById("contact-status-box");
+
+      const recipient = "jiayasjasu@gmail.com";
+      const fullSubject = `[Portfolio Contact] ${subject}`;
+      const fullBody = `Hello Muhammad Jiyas,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nSent via Portfolio Website`;
+
+      const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(fullSubject)}&body=${encodeURIComponent(fullBody)}`;
+
+      // Build fallback feedback safely; user-entered values stay out of markup.
+      feedbackBox.classList.remove("hidden");
+      feedbackBox.className = "p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-medium space-y-1";
+      feedbackBox.replaceChildren();
+      const feedbackTitle = document.createElement("p");
+      feedbackTitle.className = "font-bold";
+      feedbackTitle.textContent = "Opening your email client...";
+      const feedbackMessage = document.createElement("p");
+      feedbackMessage.append("A message is addressed to ");
+      const recipientLabel = document.createElement("strong");
+      recipientLabel.textContent = recipient;
+      feedbackMessage.append(recipientLabel, ". If your email application did not launch automatically, ");
+      const manualLink = document.createElement("a");
+      manualLink.href = mailtoLink;
+      manualLink.className = "text-primary underline font-bold";
+      manualLink.textContent = "click here to open manually";
+      feedbackMessage.append(manualLink, ".");
+      feedbackBox.append(feedbackTitle, feedbackMessage);
+
+      // Trigger user default email client
+      window.location.href = mailtoLink;
+    }
+
+    /**
+     * Utility: Copy to Clipboard with Toast Notification
+     */
+    function copyToClipboard(text, msg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast(msg || "Copied to clipboard!"))
+          .catch(() => fallbackCopy(text, msg));
+      } else {
+        fallbackCopy(text, msg);
+      }
+    }
+
+    function fallbackCopy(text, msg) {
+      const tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand("copy");
+        showToast(msg || "Copied to clipboard!");
+      } catch (e) {
+        showToast("Select & copy: " + text);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    /**
+     * Utility: Toast Message Display
+     */
+    function showToast(message) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "bg-on-surface text-surface px-4 py-2 rounded-lg text-xs font-semibold shadow-lg animate-toast pointer-events-auto flex items-center gap-2";
+      toast.innerHTML = `<span class="material-symbols-outlined text-[16px] text-primary-fixed">info</span> <span>${escapeHTML(message)}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 3100);
+    }
+
+    /**
+     * Utility: Feedback Banner inside Owner Section
+     */
+    function showFeedback(msg) {
+      const box = document.getElementById("owner-feedback");
+      if (!box) return;
+      box.textContent = msg;
+      box.classList.remove("hidden");
+      setTimeout(() => {
+        box.classList.add("hidden");
+      }, 5000);
+    }
+
+    /**
+     * Utility: Mobile Menu Toggle
+     */
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobile-menu");
+      const btn = document.getElementById("mobile-menu-btn");
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      
+      if (isExpanded) {
+        menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        menu.classList.remove("hidden");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    }
+
+    /**
+     * Utility: HTML Escaping
+     */
+    function escapeHTML(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Modal Keyboard Accessibility (Escape to close)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeProjectModal();
+        closeCertModal();
+      }
+    });
+
+    // Close modal on backdrop click
+    document.getElementById("project-modal")?.addEventListener("click", (e) => {
+      if (e.target.id === "project-modal") closeProjectModal();
+    });
+    document.getElementById("cert-modal")?.addEventListener("click", (e) => {
+      if (e.target.id === "cert-modal") closeCertModal();
+    });
+
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      initPortfolio();
+      const yearElem = document.getElementById("current-year");
+      if (yearElem) yearElem.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
+
